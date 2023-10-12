@@ -30,7 +30,9 @@ const FileUploadForm = () => {
           Employee Attendance Visualization and Management System
         </h2>
         <input type="file" accept=".csv" onChange={handleFileChange} />
-        <button onClick={handleFileUpload}>Upload CSV</button>
+        <button className="btn btn-primary" onClick={handleFileUpload}>
+          Upload CSV
+        </button>
       </div>
     </div>
   );
