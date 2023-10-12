@@ -1,41 +1,39 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 
-import UserService from "../services/user.service";
+const FileUploadForm = () => {
+  const [selectedFile, setSelectedFile] = useState(null);
 
-export default class Home extends Component {
-  constructor(props) {
-    super(props);
+  const handleFileChange = (e) => {
+    const file = e.target.files[0]; // Get the first selected file
+    setSelectedFile(file);
+  };
 
-    this.state = {
-      content: ""
-    };
-  }
+  const handleFileUpload = () => {
+    if (selectedFile) {
+      const reader = new FileReader();
 
-  componentDidMount() {
-    UserService.getPublicContent().then(
-      response => {
-        this.setState({
-          content: response.data
-        });
-      },
-      error => {
-        this.setState({
-          content:
-            (error.response && error.response.data) ||
-            error.message ||
-            error.toString()
-        });
-      }
-    );
-  }
+      reader.onload = (event) => {
+        const fileContent = event.target.result;
+        console.log(fileContent);
+      };
 
-  render() {
-    return (
-      <div className="container">
-        <header className="jumbotron">
-          <h3>{this.state.content}</h3>
-        </header>
+      reader.readAsText(selectedFile);
+    } else {
+      return false;
+    }
+  };
+
+  return (
+    <div className="container">
+      <div className="jumbotron text-center">
+        <h2 className="mb-4">
+          Employee Attendance Visualization and Management System
+        </h2>
+        <input type="file" accept=".csv" onChange={handleFileChange} />
+        <button onClick={handleFileUpload}>Upload CSV</button>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
+
+export default FileUploadForm;

@@ -1,16 +1,17 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8080/api/auth/";
+const API_URL = "https://api.dvt.theyolostudio.com/auth/";
 
 class AuthService {
-  login(username, password) {
+  login(username, password, email) {
     return axios
-      .post(API_URL + "signin", {
+      .post(API_URL + "login", {
         username,
-        password
+        password,
+        email,
       })
-      .then(response => {
-        if (response.data.accessToken) {
+      .then((response) => {
+        if (response.data.access) {
           localStorage.setItem("user", JSON.stringify(response.data));
         }
 
@@ -22,16 +23,17 @@ class AuthService {
     localStorage.removeItem("user");
   }
 
-  register(username, email, password) {
-    return axios.post(API_URL + "signup", {
+  register(username, password, first_name, last_name) {
+    return axios.post(API_URL + "registration", {
       username,
-      email,
-      password
+      password,
+      first_name,
+      last_name,
     });
   }
 
   getCurrentUser() {
-    return JSON.parse(localStorage.getItem('user'));;
+    return JSON.parse(localStorage.getItem("user"));
   }
 }
 
