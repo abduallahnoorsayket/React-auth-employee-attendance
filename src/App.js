@@ -12,7 +12,7 @@ import HomeTwo from "./components/home-two.component";
 import DesignComponent from "./components/designComponent";
 
 // import AuthVerify from "./common/auth-verify";
-import EventBus from "./common/EventBus";
+// import EventBus from "./common/EventBus";
 
 class App extends Component {
   constructor(props) {
@@ -32,18 +32,18 @@ class App extends Component {
     if (user) {
       this.setState({
         currentUser: user,
-        showModeratorBoard: user.roles.includes("ROLE_MODERATOR"),
-        showAdminBoard: user.roles.includes("ROLE_ADMIN"),
+        // showModeratorBoard: user.roles.includes("ROLE_MODERATOR"),
+        // showAdminBoard: user.roles.includes("ROLE_ADMIN"),
       });
     }
 
-    EventBus.on("logout", () => {
-      this.logOut();
-    });
+    // EventBus.on("logout", () => {
+    //   this.logOut();
+    // });
   }
 
   componentWillUnmount() {
-    EventBus.remove("logout");
+    // EventBus.remove("logout");
   }
 
   logOut() {
@@ -67,18 +67,18 @@ class App extends Component {
             </Link>
             <div className="navbar-nav mr-auto">
               <li className="nav-item">
-                <Link to={"/home"} className="nav-link">
+                <Link to={"/"} className="nav-link">
                   Home
                 </Link>
               </li>
 
-              {currentUser && (
+              {/* {currentUser && (
                 <li className="nav-item">
                   <Link to={"/user"} className="nav-link">
                     User
                   </Link>
                 </li>
-              )}
+              )} */}
             </div>
 
             {currentUser ? (
@@ -113,8 +113,8 @@ class App extends Component {
         </div>
         <div className="container mt-3">
           <Routes>
-            <Route path="/" element={<HomeTwo />} />
-            <Route path="/home" element={<Home />} />
+            {/* <Route path="/" element={<HomeTwo />} /> */}
+            <Route path="/" element={<Home />} />
             <Route path="/home-two" element={<HomeTwo />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />

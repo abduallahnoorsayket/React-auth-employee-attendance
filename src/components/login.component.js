@@ -78,7 +78,7 @@ class Login extends Component {
         this.state.email
       ).then(
         () => {
-          this.props.router.navigate("/profile");
+          this.props.router.navigate("/");
           window.location.reload();
         },
         (error) => {

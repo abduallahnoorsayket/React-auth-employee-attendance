@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 import {
   LineChart,
   Line,
@@ -10,6 +11,7 @@ import {
   BarChart,
   Bar,
 } from "recharts";
+import userService from "../services/user.service";
 
 const Home = () => {
   const [data, setData] = useState([]);
@@ -51,23 +53,9 @@ const Home = () => {
       // Create a FormData object to send the file
       const formData = new FormData();
       formData.append("csvFile", fileSelected);
-
-      // Send the FormData to your server using a POST request
-      // You can use the fetch API or a library like Axios for this
-      // Example using fetch:
-      fetch("/upload-csv", {
-        method: "POST",
-        body: formData,
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          // Handle the response from the server
-          console.log(data);
-        })
-        .catch((error) => {
-          // Handle any errors
-          console.error(error);
-        });
+      userService.saveCSVData(formData).then((response) => {
+        console.log(response);
+      });
     } else {
       alert("Please select a file to upload.");
     }
@@ -80,13 +68,27 @@ const Home = () => {
           Employee Attendance Visualization and Management System
         </h2>
         <input type="file" accept=".csv" onChange={handleFileChange} />
-        <button onClick={handleUpload}>Save CSV</button>
+        <button className="btn btn-primary" onClick={handleUpload}>
+          Save CSV
+        </button>
 
         {!fileSelected && <p className="mt-2">Please select a file.</p>}
       </div>
       {data.length > 0 && (
         <div className="charts-container">
-          <div className="chart">
+          <div className="chart mt-4">
+            <BarChart width={800} height={600} data={data}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="EmployeeName" />
+              <YAxis dataKey="EmployeeID" />
+              <Tooltip />
+              <Legend />
+              <Bar dataKey="EmployeeID" fill="#8884d8" />
+              <Bar dataKey="Designation" fill="#82ca9d" />
+              <Bar dataKey="CheckInTime" fill="#808080" />
+            </BarChart>
+          </div>
+          <div className="chart mt-4">
             <LineChart
               width={800}
               height={600}
@@ -122,19 +124,6 @@ const Home = () => {
                 strokeWidth="3"
               />
             </LineChart>
-          </div>
-
-          <div className="chart mt-4">
-            <BarChart width={800} height={600} data={data}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="EmployeeName" />
-              <YAxis dataKey="EmployeeID" />
-              <Tooltip />
-              <Legend />
-              <Bar dataKey="EmployeeID" fill="#8884d8" />
-              <Bar dataKey="Designation" fill="#82ca9d" />
-              <Bar dataKey="CheckInTime" fill="#808080" />
-            </BarChart>
           </div>
         </div>
       )}
