@@ -76,54 +76,58 @@ const Home = () => {
       </div>
       {data.length > 0 && (
         <div className="charts-container">
-          <div className="chart mt-4">
-            <BarChart width={800} height={600} data={data}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="EmployeeName" />
-              <YAxis dataKey="EmployeeID" />
-              <Tooltip />
-              <Legend />
-              <Bar dataKey="EmployeeID" fill="#8884d8" />
-              <Bar dataKey="Designation" fill="#82ca9d" />
-              <Bar dataKey="CheckInTime" fill="#808080" />
-            </BarChart>
-          </div>
-          <div className="chart mt-4">
-            <LineChart
-              width={800}
-              height={600}
-              data={data}
-              margin={{
-                top: 5,
-                right: 30,
-                left: 0,
-                bottom: 5,
-              }}
-            >
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="EmployeeName" />
-              <YAxis dataKey="EmployeeID" />
-              <Tooltip />
-              <Legend />
-              <Line
-                type="monotone"
-                dataKey="EmployeeID"
-                stroke="#CA4F8E"
-                strokeWidth="3"
-              />
-              <Line
-                type="monotone"
-                dataKey="Designation"
-                stroke="#82ca9d"
-                strokeWidth="3"
-              />
-              <Line
-                type="monotone"
-                dataKey="CheckInTime"
-                stroke="#808080"
-                strokeWidth="3"
-              />
-            </LineChart>
+          <div className="row">
+            <div className="col-md-12">
+              <div className="chart mt-4">
+                <BarChart width={800} height={600} data={data}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="EmployeeName" />
+                  <YAxis dataKey="EmployeeID" />
+                  <Tooltip />
+                  <Legend />
+                  <Bar dataKey="EmployeeID" fill="#8884d8" />
+                  <Bar dataKey="Designation" fill="#82ca9d" />
+                  <Bar dataKey="CheckInTime" fill="#808080" />
+                </BarChart>
+              </div>
+              <div className="chart mt-4">
+                <LineChart
+                  width={800}
+                  height={600}
+                  data={data}
+                  margin={{
+                    top: 5,
+                    right: 30,
+                    left: 0,
+                    bottom: 5,
+                  }}
+                >
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="EmployeeName" />
+                  <YAxis dataKey="EmployeeID" />
+                  <Tooltip />
+                  <Legend />
+                  <Line
+                    type="monotone"
+                    dataKey="EmployeeID"
+                    stroke="#CA4F8E"
+                    strokeWidth="3"
+                  />
+                  <Line
+                    type="monotone"
+                    dataKey="Designation"
+                    stroke="#82ca9d"
+                    strokeWidth="3"
+                  />
+                  <Line
+                    type="monotone"
+                    dataKey="CheckInTime"
+                    stroke="#808080"
+                    strokeWidth="3"
+                  />
+                </LineChart>
+              </div>
+            </div>
           </div>
         </div>
       )}

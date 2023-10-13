@@ -72,13 +72,13 @@ class App extends Component {
                 </Link>
               </li>
 
-              {/* {currentUser && (
+              {currentUser && (
                 <li className="nav-item">
-                  <Link to={"/user"} className="nav-link">
-                    User
+                  <Link to={"/design"} className="nav-link">
+                    Slider Design
                   </Link>
                 </li>
-              )} */}
+              )}
             </div>
 
             {currentUser ? (
@@ -115,7 +115,7 @@ class App extends Component {
           <Routes>
             {/* <Route path="/" element={<HomeTwo />} /> */}
             <Route path="/" element={<Home />} />
-            <Route path="/home-two" element={<HomeTwo />} />
+            {/* <Route path="/home-two" element={<HomeTwo />} /> */}
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/design" element={<DesignComponent />} />
