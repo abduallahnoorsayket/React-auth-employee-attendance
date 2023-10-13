@@ -48,51 +48,53 @@ const Home = () => {
   };
 
   return (
-    <div>
-      <input type="file" accept=".csv" onChange={handleFileChange} />
+    <div className="container">
+      <div className="jumbotron text-center">
+        <input type="file" accept=".csv" onChange={handleFileChange} />
 
-      {!fileSelected && <p>Please select a file.</p>}
+        {!fileSelected && <p>Please select a file.</p>}
 
-      {data.length > 0 && (
-        <div className="charts-container">
-          <div className="chart">
-            <LineChart
-              width={500}
-              height={300}
-              data={data}
-              margin={{
-                top: 5,
-                right: 30,
-                left: 0,
-                bottom: 5,
-              }}
-            >
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="Category" />
-              <YAxis />
-              <Tooltip />
-              <Legend />
-              <Line
-                type="monotone"
-                dataKey="Value"
-                stroke="#CA4F8E"
-                strokeWidth="3"
-              />
-            </LineChart>
+        {data.length > 0 && (
+          <div className="charts-container">
+            <div className="chart">
+              <LineChart
+                width={500}
+                height={300}
+                data={data}
+                margin={{
+                  top: 5,
+                  right: 30,
+                  left: 0,
+                  bottom: 5,
+                }}
+              >
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="Category" />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                <Line
+                  type="monotone"
+                  dataKey="Value"
+                  stroke="#CA4F8E"
+                  strokeWidth="3"
+                />
+              </LineChart>
+            </div>
+
+            <div className="chart">
+              <BarChart width={500} height={300} data={data}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="Category" />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                <Bar dataKey="Value" fill="#CA4F8E" />
+              </BarChart>
+            </div>
           </div>
-
-          <div className="chart">
-            <BarChart width={500} height={300} data={data}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="Category" />
-              <YAxis />
-              <Tooltip />
-              <Legend />
-              <Bar dataKey="Value" fill="#CA4F8E" />
-            </BarChart>
-          </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };

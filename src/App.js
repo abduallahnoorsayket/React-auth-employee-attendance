@@ -9,6 +9,7 @@ import Login from "./components/login.component";
 import Register from "./components/register.component";
 import Home from "./components/home.component";
 import HomeTwo from "./components/home-two.component";
+import SimpleLineChart from "./components/simple-line-chart";
 import Profile from "./components/profile.component";
 import BoardUser from "./components/board-user.component";
 import BoardModerator from "./components/board-moderator.component";
@@ -116,7 +117,8 @@ class App extends Component {
         </div>
         <div className="container mt-3">
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<HomeTwo />} />
+            {/* <Route path="/" element={<Home />} /> */}
             <Route path="/home-two" element={<HomeTwo />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
