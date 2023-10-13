@@ -1,38 +1,6 @@
 import React, { useState } from "react";
 import SimpleLineChart from "./simple-line-chart";
 
-// const data = [
-//   {
-//     EmployeeID: "1",
-//     EmployeeName: "Kath",
-//     Designation: "Automation Specialist IV",
-//     Date: "10/5/2023",
-//     CheckInTime: "2:45 PM",
-//   },
-//   {
-//     EmployeeID: "2",
-//     EmployeeName: "Alasdair",
-//     Designation: "General Manager",
-//     Date: "10/26/2023",
-//     CheckInTime: "3:45 PM",
-//   },
-//   {
-//     EmployeeID: "3",
-//     EmployeeName: "Alasdaisalam",
-//     Designation: "General Manager",
-//     Date: "10/30/2023",
-//     CheckInTime: "1:45 PM",
-//   },
-//   {
-//     EmployeeID: "4",
-//     EmployeeName: "kaalm",
-//     Designation: "General Manager",
-//     Date: "11/15/2023",
-//     CheckInTime: "2:45 PM",
-//   },
-
-// ];
-
 const HomeTwo = () => {
   const [data, setData] = useState([]);
   const [selectedFile, setSelectedFile] = useState(null);
@@ -50,10 +18,8 @@ const HomeTwo = () => {
         const fileContent = event.target.result;
         console.log(fileContent);
         const rows = fileContent.split("\n");
-        // Extract the header row to use as property names for objects
         const headers = rows[0].split(",");
 
-        // Create an array of objects for the data
         const parsedData = [];
         for (let i = 1; i < rows.length; i++) {
           const values = rows[i].split(",");

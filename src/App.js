@@ -9,11 +9,7 @@ import Login from "./components/login.component";
 import Register from "./components/register.component";
 import Home from "./components/home.component";
 import HomeTwo from "./components/home-two.component";
-import SimpleLineChart from "./components/simple-line-chart";
-import Profile from "./components/profile.component";
-import BoardUser from "./components/board-user.component";
-import BoardModerator from "./components/board-moderator.component";
-import BoardAdmin from "./components/board-admin.component";
+import DesignComponent from "./components/designComponent";
 
 // import AuthVerify from "./common/auth-verify";
 import EventBus from "./common/EventBus";
@@ -118,11 +114,11 @@ class App extends Component {
         <div className="container mt-3">
           <Routes>
             <Route path="/" element={<HomeTwo />} />
-            {/* <Route path="/" element={<Home />} /> */}
+            <Route path="/home" element={<Home />} />
             <Route path="/home-two" element={<HomeTwo />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/profile" element={<Profile />} />
+            <Route path="/design" element={<DesignComponent />} />
           </Routes>
         </div>
 
