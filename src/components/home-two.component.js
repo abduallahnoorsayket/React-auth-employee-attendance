@@ -1,63 +1,40 @@
 import React, { useState } from "react";
 import SimpleLineChart from "./simple-line-chart";
 
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-} from "recharts";
+// const data = [
+//   {
+//     EmployeeID: "1",
+//     EmployeeName: "Kath",
+//     Designation: "Automation Specialist IV",
+//     Date: "10/5/2023",
+//     CheckInTime: "2:45 PM",
+//   },
+//   {
+//     EmployeeID: "2",
+//     EmployeeName: "Alasdair",
+//     Designation: "General Manager",
+//     Date: "10/26/2023",
+//     CheckInTime: "3:45 PM",
+//   },
+//   {
+//     EmployeeID: "3",
+//     EmployeeName: "Alasdaisalam",
+//     Designation: "General Manager",
+//     Date: "10/30/2023",
+//     CheckInTime: "1:45 PM",
+//   },
+//   {
+//     EmployeeID: "4",
+//     EmployeeName: "kaalm",
+//     Designation: "General Manager",
+//     Date: "11/15/2023",
+//     CheckInTime: "2:45 PM",
+//   },
 
-const data = [
-  {
-    name: "Page A",
-    uv: 4000,
-    pv: 2400,
-    amt: 2400,
-  },
-  {
-    name: "Page B",
-    uv: 3000,
-    pv: 1398,
-    amt: 2210,
-  },
-  {
-    name: "Page C",
-    uv: 2000,
-    pv: 9800,
-    amt: 2290,
-  },
-  {
-    name: "Page D",
-    uv: 2780,
-    pv: 3908,
-    amt: 2000,
-  },
-  {
-    name: "Page E",
-    uv: 1890,
-    pv: 4800,
-    amt: 2181,
-  },
-  {
-    name: "Page F",
-    uv: 2390,
-    pv: 3800,
-    amt: 2500,
-  },
-  {
-    name: "Page G",
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
-  },
-];
+// ];
 
 const HomeTwo = () => {
+  const [data, setData] = useState([]);
   const [selectedFile, setSelectedFile] = useState(null);
 
   const handleFileChange = (e) => {
@@ -72,6 +49,24 @@ const HomeTwo = () => {
       reader.onload = (event) => {
         const fileContent = event.target.result;
         console.log(fileContent);
+        const rows = fileContent.split("\n");
+        // Extract the header row to use as property names for objects
+        const headers = rows[0].split(",");
+
+        // Create an array of objects for the data
+        const parsedData = [];
+        for (let i = 1; i < rows.length; i++) {
+          const values = rows[i].split(",");
+          const obj = {};
+          for (let j = 0; j < headers.length; j++) {
+            const key = headers[j].replace(/[\s-]+/g, "");
+            const value = values[j];
+            obj[key] = value;
+          }
+          parsedData.push(obj);
+        }
+        setData(parsedData);
+        console.log("parsed array===", parsedData);
       };
 
       reader.readAsText(selectedFile);
@@ -93,7 +88,7 @@ const HomeTwo = () => {
         </button>
       </div>
       <div className="text-center m-auto mt-4">
-        <SimpleLineChart data={data} />
+        {data.length > 0 && <SimpleLineChart data={data} />}
       </div>
     </div>
   );
