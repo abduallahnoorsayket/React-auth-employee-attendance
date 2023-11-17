@@ -8,6 +8,7 @@ import AuthService from "./services/auth.service";
 import Login from "./components/login.component";
 import Register from "./components/register.component";
 import Movielist from "./components/movieList.component";
+import Profile from "./components/profile.component";
 
 class App extends Component {
   constructor(props) {
@@ -116,6 +117,7 @@ class App extends Component {
           <Route path="/" element={<Movielist />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
 
         {/* <AuthVerify logOut={this.logOut}/> */}
