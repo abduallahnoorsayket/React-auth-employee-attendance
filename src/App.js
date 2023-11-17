@@ -16,8 +16,6 @@ class App extends Component {
     this.logOut = this.logOut.bind(this);
 
     this.state = {
-      showModeratorBoard: false,
-      showAdminBoard: false,
       currentUser: undefined,
     };
   }
@@ -30,10 +28,6 @@ class App extends Component {
         currentUser: user.user,
       });
     }
-
-    // EventBus.on("logout", () => {
-    //   this.logOut();
-    // });
   }
 
   componentWillUnmount() {
@@ -43,14 +37,12 @@ class App extends Component {
   logOut() {
     AuthService.logout();
     this.setState({
-      showModeratorBoard: false,
-      showAdminBoard: false,
       currentUser: undefined,
     });
   }
 
   render() {
-    const { currentUser, showModeratorBoard, showAdminBoard } = this.state;
+    const { currentUser } = this.state;
 
     return (
       <>
@@ -59,21 +51,6 @@ class App extends Component {
             <Link to={"/"} className="navbar-brand">
               Movie Land
             </Link>
-            {/* <div className="navbar-nav mr-auto">
-              <li className="nav-item">
-                <Link to={"/"} className="nav-link">
-                  Home
-                </Link>
-              </li>
-
-              {currentUser && (
-                <li className="nav-item">
-                  <Link to={"/design"} className="nav-link">
-                    Slider Design
-                  </Link>
-                </li>
-              )}
-            </div> */}
 
             {currentUser ? (
               <div className="navbar-nav ml-auto">
