@@ -7,9 +7,7 @@ import AuthService from "./services/auth.service";
 
 import Login from "./components/login.component";
 import Register from "./components/register.component";
-import Home from "./components/home.component";
-import HomeTwo from "./components/home-two.component";
-import DesignComponent from "./components/designComponent";
+import Movielist from "./components/movieList.component";
 
 // import AuthVerify from "./common/auth-verify";
 // import EventBus from "./common/EventBus";
@@ -59,13 +57,13 @@ class App extends Component {
     const { currentUser, showModeratorBoard, showAdminBoard } = this.state;
 
     return (
-      <div>
+      <>
         <div className="container-fuild">
           <nav className="navbar navbar-expand navbar-dark bg-dark">
             <Link to={"/"} className="navbar-brand">
-              DataVizTrack
+              Movie Land
             </Link>
-            <div className="navbar-nav mr-auto">
+            {/* <div className="navbar-nav mr-auto">
               <li className="nav-item">
                 <Link to={"/"} className="nav-link">
                   Home
@@ -79,7 +77,7 @@ class App extends Component {
                   </Link>
                 </li>
               )}
-            </div>
+            </div> */}
 
             {currentUser ? (
               <div className="navbar-nav ml-auto">
@@ -103,7 +101,10 @@ class App extends Component {
                 </li>
 
                 <li className="nav-item">
-                  <Link to={"/register"} className="nav-link">
+                  <Link
+                    to={"/register"}
+                    className="nav-link  btn btn-primary btn-sm ml-3"
+                  >
                     Sign Up
                   </Link>
                 </li>
@@ -111,20 +112,15 @@ class App extends Component {
             )}
           </nav>
         </div>
-        <div className="container mt-3">
-          <Routes>
-            {/* <Route path="/" element={<HomeTwo />} /> */}
-            {/* <Route path="/" element={<Home />} /> */}
-            {/* <Route path="/home-two" element={<HomeTwo />} /> */}
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/design" element={<DesignComponent />} />
-          </Routes>
-        </div>
+        {/* <Movielist /> */}
+        <Routes>
+          <Route path="/" element={<Movielist />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+        </Routes>
 
         {/* <AuthVerify logOut={this.logOut}/> */}
-      </div>
+      </>
     );
   }
 }
