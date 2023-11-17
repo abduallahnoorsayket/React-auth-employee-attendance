@@ -4,17 +4,7 @@ import { useEffect, useState } from "react";
 import SearchIcon from "../search.svg";
 import MovieCard from "./movieCard.component";
 
-// 93806436
 const API_URL = "http://www.omdbapi.com/?apikey=93806436";
-
-// const movie1 = {
-//   Title: "The Amazing Spiderman 2 Webb Cut",
-//   Year: "2021",
-//   imdbID: "tt18351128",
-//   Type: "movie",
-//   Poster:
-//     "https://m.media-amazon.com/images/M/MV5BYzYzZDViNWYtNWViMS00NDMxLThlN2YtZjFkOWMwODkzNzhiXkEyXkFqcGdeQXVyMTUwMzM4NzU0._V1_SX300.jpg",
-// };
 
 const Movielist = () => {
   const [movies, setMovies] = useState([]);

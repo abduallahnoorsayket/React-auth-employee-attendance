@@ -9,9 +9,6 @@ import Login from "./components/login.component";
 import Register from "./components/register.component";
 import Movielist from "./components/movieList.component";
 
-// import AuthVerify from "./common/auth-verify";
-// import EventBus from "./common/EventBus";
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -29,9 +26,7 @@ class App extends Component {
 
     if (user) {
       this.setState({
-        currentUser: user,
-        // showModeratorBoard: user.roles.includes("ROLE_MODERATOR"),
-        // showAdminBoard: user.roles.includes("ROLE_ADMIN"),
+        currentUser: user.user,
       });
     }
 
@@ -87,7 +82,11 @@ class App extends Component {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <a href="/login" className="nav-link" onClick={this.logOut}>
+                  <a
+                    href="/login"
+                    className="nav-link btn btn-success btn-sm ml-3"
+                    onClick={this.logOut}
+                  >
                     LogOut
                   </a>
                 </li>
