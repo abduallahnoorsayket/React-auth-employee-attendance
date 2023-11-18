@@ -9,7 +9,7 @@ import AuthService from "../services/auth.service";
 const required = (value) => {
   if (!value) {
     return (
-      <div className="alert alert-danger" role="alert">
+      <div className="alert alert-danger mt-1" role="alert">
         This field is required!
       </div>
     );
@@ -29,7 +29,7 @@ const required = (value) => {
 const vusername = (value) => {
   if (value.length < 3 || value.length > 20) {
     return (
-      <div className="alert alert-danger" role="alert">
+      <div className="alert alert-danger mt-1" role="alert">
         The username must be between 3 and 20 characters.
       </div>
     );
@@ -39,7 +39,7 @@ const vusername = (value) => {
 const vpassword = (value) => {
   if (value.length < 6 || value.length > 40) {
     return (
-      <div className="alert alert-danger" role="alert">
+      <div className="alert alert-danger mt-1" role="alert">
         The password must be between 6 and 40 characters.
       </div>
     );
@@ -102,15 +102,18 @@ export default class Register extends Component {
     if (this.checkBtn.context._errors.length === 0) {
       AuthService.register(
         this.state.username,
+        this.state.password,
         this.state.first_name,
-        this.state.last_name,
-        this.state.password
+        this.state.last_name
       ).then(
         (response) => {
           this.setState({
             message: response.data.message,
             successful: true,
           });
+          // this.props.router.push("/login");
+          // window.location.reload();
+          window.location.href = "/login";
         },
         (error) => {
           const resMessage =
@@ -184,7 +187,7 @@ export default class Register extends Component {
                 <div className="form-group">
                   <label htmlFor="last_name">Last name</label>
                   <Input
-                    type="last_name"
+                    type="text"
                     className="form-control"
                     name="last_name"
                     value={this.state.last_name}

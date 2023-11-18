@@ -7,12 +7,8 @@ import AuthService from "./services/auth.service";
 
 import Login from "./components/login.component";
 import Register from "./components/register.component";
-import Home from "./components/home.component";
-import HomeTwo from "./components/home-two.component";
-import DesignComponent from "./components/designComponent";
-
-// import AuthVerify from "./common/auth-verify";
-// import EventBus from "./common/EventBus";
+import Movielist from "./components/movieList.component";
+import Profile from "./components/profile.component";
 
 class App extends Component {
   constructor(props) {
@@ -20,8 +16,6 @@ class App extends Component {
     this.logOut = this.logOut.bind(this);
 
     this.state = {
-      showModeratorBoard: false,
-      showAdminBoard: false,
       currentUser: undefined,
     };
   }
@@ -31,15 +25,9 @@ class App extends Component {
 
     if (user) {
       this.setState({
-        currentUser: user,
-        // showModeratorBoard: user.roles.includes("ROLE_MODERATOR"),
-        // showAdminBoard: user.roles.includes("ROLE_ADMIN"),
+        currentUser: user.user,
       });
     }
-
-    // EventBus.on("logout", () => {
-    //   this.logOut();
-    // });
   }
 
   componentWillUnmount() {
@@ -49,37 +37,20 @@ class App extends Component {
   logOut() {
     AuthService.logout();
     this.setState({
-      showModeratorBoard: false,
-      showAdminBoard: false,
       currentUser: undefined,
     });
   }
 
   render() {
-    const { currentUser, showModeratorBoard, showAdminBoard } = this.state;
+    const { currentUser } = this.state;
 
     return (
-      <div>
+      <>
         <div className="container-fuild">
           <nav className="navbar navbar-expand navbar-dark bg-dark">
             <Link to={"/"} className="navbar-brand">
-              DataVizTrack
+              Movie Land
             </Link>
-            <div className="navbar-nav mr-auto">
-              <li className="nav-item">
-                <Link to={"/"} className="nav-link">
-                  Home
-                </Link>
-              </li>
-
-              {currentUser && (
-                <li className="nav-item">
-                  <Link to={"/design"} className="nav-link">
-                    Slider Design
-                  </Link>
-                </li>
-              )}
-            </div>
 
             {currentUser ? (
               <div className="navbar-nav ml-auto">
@@ -89,7 +60,11 @@ class App extends Component {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <a href="/login" className="nav-link" onClick={this.logOut}>
+                  <a
+                    href="/login"
+                    className="nav-link btn btn-success btn-sm ml-3"
+                    onClick={this.logOut}
+                  >
                     LogOut
                   </a>
                 </li>
@@ -103,7 +78,10 @@ class App extends Component {
                 </li>
 
                 <li className="nav-item">
-                  <Link to={"/register"} className="nav-link">
+                  <Link
+                    to={"/register"}
+                    className="nav-link  btn btn-primary btn-sm ml-3"
+                  >
                     Sign Up
                   </Link>
                 </li>
@@ -111,20 +89,16 @@ class App extends Component {
             )}
           </nav>
         </div>
-        <div className="container mt-3">
-          <Routes>
-            {/* <Route path="/" element={<HomeTwo />} /> */}
-            {/* <Route path="/" element={<Home />} /> */}
-            {/* <Route path="/home-two" element={<HomeTwo />} /> */}
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/design" element={<DesignComponent />} />
-          </Routes>
-        </div>
+        {/* <Movielist /> */}
+        <Routes>
+          <Route path="/" element={<Movielist />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/profile" element={<Profile />} />
+        </Routes>
 
         {/* <AuthVerify logOut={this.logOut}/> */}
-      </div>
+      </>
     );
   }
 }
